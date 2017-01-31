@@ -1,6 +1,6 @@
 {
   "name": "lambda-log-timer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "This timer adds pre- and post- hooks to a lamdba function for logging the duration of a call",
   "main": "lib/index.js",
   "scripts": {
