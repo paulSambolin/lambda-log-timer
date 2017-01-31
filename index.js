@@ -13,7 +13,7 @@ class Timer {
     // callback passed in is AWS callback
     static getTime(main, event, context, processId, transactionId, callback) {
         var startTime = Date.now();
-        main(event, context, (err, data) => {
+        main(event, context, processId, transactionId, (err, data) => {
             // when main callback is called, call the AWS callback
             var endTime = Date.now();
             var duration = endTime - startTime;
@@ -22,8 +22,8 @@ class Timer {
             var output = {
                 request: event,
                 response: data,
-                processId: ProcessId,
-                transactionId: TranactionId,
+                processId: processId,
+                transactionId: transactionId,
                 functionName: context.functionName,
                 requestId: context.awsRequestId,
                 version: context.functionVersion,
