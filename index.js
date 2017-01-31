@@ -22,9 +22,11 @@ class Timer {
             var output = {
                 request: event,
                 response: data,
-                function: context.functionName,
+                functionName: context.functionName,
                 requestId: context.awsRequestId,
                 version: context.functionVersion,
+                startTime: startTime,
+                endTime: endTime,
                 duration: duration
             }
             console.log(output);
