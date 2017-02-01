@@ -31,7 +31,7 @@ class Timer {
                 endTime: endTime,
                 duration: duration
             }
-            console.log(output);
+            console.log(JSON.stringify(output));
             callback(err, data);
         });
     }
