@@ -33,7 +33,7 @@ class Timer {
     // Services read the process and transaction id's from the event object
     static getTime(main, event, context, callback) {
         var startTime = Date.now();
-        main(event, context, event.ProcessId, event.TransactionId, (err, data) => {
+        main(event, context, (err, data) => {
             // when main callback is called, call the AWS callback
             var endTime = Date.now();
             var duration = endTime - startTime;
