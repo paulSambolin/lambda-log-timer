@@ -6,7 +6,7 @@ class Timer {
     constructor() { }
 
     // Controllers add process and transaction id's
-    static getTime(main, event, context, processId, transactionId, callback) {
+    static getTimeCorrelation(main, event, context, processId, transactionId, callback) {
         var startTime = Date.now();
         main(event, context, processId, transactionId, (err, data) => {
             // when main callback is called, call the AWS callback
@@ -31,7 +31,7 @@ class Timer {
     }
 
     // Services read the process and transaction id's from the event object
-    static getTime(main, event, context, callback) {
+    static getTimeService(main, event, context, callback) {
         var startTime = Date.now();
         main(event, context, (err, data) => {
             // when main callback is called, call the AWS callback
