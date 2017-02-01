@@ -3,14 +3,9 @@
 const AWS = require('aws-sdk');
 
 class Timer {
-    constructor() {
-        // this.context = context;
-        // this.lambda = new AWS.Lambda();
-        // this.cloudwatch = new AWS.CloudWatch();
-        // this.cloudwatchlogs = new AWS.CloudWatchLogs();
-    }
+    constructor() { }
 
-    // callback passed in is AWS callback
+    // Controllers add process and transaction id's
     static getTime(main, event, context, processId, transactionId, callback) {
         var startTime = Date.now();
         main(event, context, processId, transactionId, (err, data) => {
@@ -18,12 +13,36 @@ class Timer {
             var endTime = Date.now();
             var duration = endTime - startTime;
 
-            // log the output
             var output = {
                 request: event,
                 response: data,
                 processId: processId,
                 transactionId: transactionId,
+                functionName: context.functionName,
+                requestId: context.awsRequestId,
+                version: context.functionVersion,
+                startTime: startTime,
+                endTime: endTime,
+                duration: duration
+            }
+            console.log(JSON.stringify(output));
+            callback(err, data);
+        });
+    }
+
+    // Services read the process and transaction id's from the event object
+    static getTime(main, event, context, callback) {
+        var startTime = Date.now();
+        main(event, context, event.ProcessId, event.TransactionId, (err, data) => {
+            // when main callback is called, call the AWS callback
+            var endTime = Date.now();
+            var duration = endTime - startTime;
+
+            var output = {
+                request: event,
+                response: data,
+                processId: event.ProcessId,
+                transactionId: event.TransactionId,
                 functionName: context.functionName,
                 requestId: context.awsRequestId,
                 version: context.functionVersion,
