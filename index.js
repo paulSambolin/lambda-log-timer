@@ -21,6 +21,8 @@ class Timer {
                 functionName: context.functionName,
                 requestId: context.awsRequestId,
                 version: context.functionVersion,
+                securityCommitHash: process.env.SECURITY_COMMIT_HASH || 'N/A',
+                applicationCommitHash: process.env.APP_COMMIT_HASH || 'N/A',
                 startTime: startTime,
                 endTime: endTime,
                 duration: duration
@@ -46,6 +48,8 @@ class Timer {
                 functionName: context.functionName,
                 requestId: context.awsRequestId,
                 version: context.functionVersion,
+                securityCommitHash: process.env.SECURITY_COMMIT_HASH || 'N/A',
+                applicationCommitHash: process.env.APP_COMMIT_HASH || 'N/A',
                 startTime: startTime,
                 endTime: endTime,
                 duration: duration
